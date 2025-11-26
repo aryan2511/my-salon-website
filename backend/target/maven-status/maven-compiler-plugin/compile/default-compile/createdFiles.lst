@@ -1,0 +1,8 @@
+com\salon\hairstylist\model\QueueEntry.class
+com\salon\hairstylist\model\Appointment.class
+com\salon\hairstylist\model\QueueEntry$QueueType.class
+com\salon\hairstylist\repository\ServiceRepository.class
+com\salon\hairstylist\HairStylistApplication.class
+com\salon\hairstylist\model\QueueEntry$QueueStatus.class
+com\salon\hairstylist\model\Service.class
+com\salon\hairstylist\model\Appointment$AppointmentStatus.class

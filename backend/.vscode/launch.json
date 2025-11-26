@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-HairStylistApplication<hairstylist>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.salon.hairstylist.HairStylistApplication",
+            "projectName": "hairstylist",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
