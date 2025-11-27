@@ -3,4 +3,5 @@ dist/
 .git
 .vscode
 .idea
+.env
 *.log
