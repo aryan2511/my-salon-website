@@ -175,19 +175,9 @@ function App() {
 
       {view === 'queue' && <QueueView />}
 
-      {view === 'stylist-dashboard' && <StylistDashboard />}
+      {view === 'services' && <ServicesList setView={setView} />}
 
-      <AnimatePresence>
-        {view === 'services' && (
-          <ServicesList
-            onClose={() => setView('home')}
-            onBook={(service) => {
-              // You might want to pass the selected service to the booking form
-              setView('booking');
-            }}
-          />
-        )}
-      </AnimatePresence>
+      {view === 'stylist-dashboard' && <StylistDashboard />}
 
       {/* Footer */}
       <footer className="bg-gray-50 py-8 border-t border-gray-200 mt-auto">
