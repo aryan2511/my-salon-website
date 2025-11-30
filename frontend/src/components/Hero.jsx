@@ -10,28 +10,44 @@ export default function Hero({ setView }) {
     { icon: Clock, label: 'Years Experience', value: '10+' },
   ];
 
+  const today = new Date();
+  const currentMonth = today.getMonth();
+  const currentYear = today.getFullYear();
+  const currentDate = today.getDate();
+
+  const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+  const firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay();
+
+  const days = [];
+  for (let i = 0; i < firstDayOfMonth; i++) {
+    days.push(null);
+  }
+  for (let i = 1; i <= daysInMonth; i++) {
+    days.push(i);
+  }
+
   return (
     <div className="relative bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 min-h-screen flex items-center overflow-hidden pt-20">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <motion.div 
-          animate={{ 
+        <motion.div
+          animate={{
             scale: [1, 1.2, 1],
             rotate: [0, 90, 0],
           }}
           transition={{ duration: 20, repeat: Infinity }}
           className="absolute top-20 -right-20 w-96 h-96 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30"
         />
-        <motion.div 
-          animate={{ 
+        <motion.div
+          animate={{
             scale: [1, 1.3, 1],
             rotate: [0, -90, 0],
           }}
           transition={{ duration: 25, repeat: Infinity }}
           className="absolute -bottom-20 -left-20 w-96 h-96 bg-indigo-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30"
         />
-        <motion.div 
-          animate={{ 
+        <motion.div
+          animate={{
             y: [-20, 20, -20],
           }}
           transition={{ duration: 15, repeat: Infinity }}
@@ -41,14 +57,14 @@ export default function Hero({ setView }) {
 
       <div className="container mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center relative z-10">
         {/* Left Content */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
           className="space-y-8"
         >
           {/* Badge */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
@@ -67,7 +83,7 @@ export default function Hero({ setView }) {
           </h1>
 
           <p className="text-xl text-gray-600 leading-relaxed max-w-xl">
-            Experience luxury styling with India's top-rated salon. Book instantly, 
+            Experience luxury styling with India's top-rated salon. Book instantly,
             skip the wait, and transform your look today.
           </p>
 
@@ -137,7 +153,7 @@ export default function Hero({ setView }) {
                   <div className="w-3 h-3 rounded-full bg-green-400"></div>
                 </div>
                 <div className="text-sm font-semibold text-gray-500">
-                  {new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
+                  {today.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
                 </div>
               </div>
 
@@ -146,17 +162,17 @@ export default function Hero({ setView }) {
                 {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((d, i) => (
                   <div key={i} className="text-xs font-bold text-gray-400 text-center">{d}</div>
                 ))}
-                {Array.from({ length: 35 }).map((_, i) => (
+                {days.map((day, i) => (
                   <motion.div
                     key={i}
-                    whileHover={{ scale: 1.2, backgroundColor: '#6366f1' }}
-                    className={`text-sm p-3 rounded-lg text-center cursor-pointer transition ${
-                      i === 14 
-                        ? 'bg-gradient-to-br from-indigo-500 to-purple-600 text-white shadow-lg scale-110 font-bold' 
+                    whileHover={day ? { scale: 1.2, backgroundColor: '#6366f1' } : {}}
+                    className={`text-sm p-3 rounded-lg text-center cursor-pointer transition ${!day ? 'invisible' : ''
+                      } ${day === currentDate
+                        ? 'bg-gradient-to-br from-indigo-500 to-purple-600 text-white shadow-lg scale-110 font-bold'
                         : 'text-gray-600 hover:bg-gray-50'
-                    }`}
+                      }`}
                   >
-                    {i + 1}
+                    {day}
                   </motion.div>
                 ))}
               </div>
